@@ -23,7 +23,7 @@ def main():
                         help="Up to which heading depth the TOC should be created: 0 = #, 1 = ##...")
     args = parser.parse_args()
 
-    if not os.path.isfile(args.file) or not args.file.endswith('.md'):
+    if not os.path.isfile(args.file) or not args.file.lower().endswith('.md'):
         sys.exit("File could not be found or the file type is incorrect!")
 
     toc = []
