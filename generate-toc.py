@@ -21,6 +21,12 @@ def main():
                         action='store',
                         metavar='DEPTH',
                         help="Up to which heading depth the TOC should be created: 0 = #, 1 = ##...")
+    parser.add_argument('-l', '--link',
+                        default='',
+                        type=str,
+                        action='store',
+                        metavar='PATH',
+                        help="Link to an external file")
     args = parser.parse_args()
 
     if not os.path.isfile(args.file) or not args.file.lower().endswith('.md'):
@@ -38,7 +44,7 @@ def main():
                     f_line = f_line.strip().replace(' ', '-')
                     f_line = re.sub('-+', '-', f_line)
 
-                    link = '{}- [{}](#{})'.format('  ' * depth, line.replace('#', '').strip(), f_line)
+                    link = '{}- [{}]({}#{})'.format('  ' * depth, line.replace('#', '').strip(), args.link, f_line)
                     toc.append(link)
 
     for link in toc:
