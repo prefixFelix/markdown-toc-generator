@@ -39,7 +39,7 @@ def main():
             if line.startswith('#'):
                 depth = line.count('#') - 1
 
-                if depth <= args.depth:
+                if depth < args.depth:
                     f_line = re.sub('[^.a-z\d\s-]', '', line.lower())
                     f_line = f_line.strip().replace(' ', '-')
                     f_line = re.sub('-+', '-', f_line)
